@@ -5,6 +5,7 @@ import android.content.Context;
 
 
 import com.ashokvarma.gander.GanderInterceptor;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class RetrofitClient {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new HeaderInterceptor())
                 .addInterceptor(new GanderInterceptor(context).showNotification(true))
+                .addNetworkInterceptor(new StethoInterceptor())
                 .build();
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
